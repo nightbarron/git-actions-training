@@ -1,10 +1,10 @@
-name: Simple Workflow
+# name: Simple Workflow
 
-on: [push]
+# on: [push, pull_request]
 
-jobs:
-  run-shell-command:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Echo a String
-        run: echo "Hello World!"
+# jobs:
+#   run-shell-command:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Echo a String
+#         run: echo "Hello World!"
