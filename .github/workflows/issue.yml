@@ -12,6 +12,7 @@ jobs:
         run: |
           pwd
           ls -a
+          git config --global init.defaultBranch main
           git init
           git remote add origin main "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
           git config --global user.email "bot@bot.com"
