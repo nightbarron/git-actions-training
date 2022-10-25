@@ -4,17 +4,20 @@ on: push
 jobs:
   dump_contexts_to_log:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     steps:
       - name: Dump GitHub context
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
       - name: Dump job context
-        run: echo '${{ toJSON(job) }}'
+        run: eccho '${{ toJSON(job) }}'
       - name: Dump steps context
+        if: failure()
         run: echo '${{ toJSON(steps) }}'
       - name: Dump runner context
-        run: echo '${{ toJSON(runner) }}'
+        run: echo '${{ toJSON(runner) }}'2
       - name: Dump strategy context
+        if: always()
         run: echo '${{ toJSON(strategy) }}'
       - name: Dump matrix context
         run: echo '${{ toJSON(matrix) }}'

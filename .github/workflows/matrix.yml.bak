@@ -1,0 +1,30 @@
+name: Matrix
+
+on: [push]
+
+jobs:
+  node-version:
+    strategy:
+      matrix: 
+        os: [macos-latest, ubuntu-latest, windows-latest]   # Options if we want to run it on many OS, it will run (mac-6, mac-8, mac-10, u-6,...)
+        node_version: [6, 8, 10]
+        include:
+          - os: ubuntu-latest
+            node_version: 8
+            include_var: "true"
+        exclude:
+          - os: macos-latest
+            node_version: 6
+      max-parallel: 0   # By default. The 3 of matrix will run parallel, but we can limit this
+      fail-fast: true   # true mean if 1 of them fail, all will fail
+    runs-on: ${{ matrix.os }} #ubuntu-latest
+    env:
+      INCLUDE_VAR: ${{ matrix.include_var }}
+    steps:
+      - name: Log node node-version 1
+        run: node -v 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node_version }}
+      - name: Log node node-version 2
+        run: node -v 
